@@ -4,6 +4,16 @@ kind: NetworkPolicy
 metadata:
   name: {{ include "falcosidekick.fullname" . }}-core-network-policy
   namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "falcosidekick.labels" . | nindent 4 }}
+    app.kubernetes.io/component: core
+    {{- with .Values.customLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  annotations:
+    {{- with .Values.customAnnotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   podSelector:
     matchLabels:
