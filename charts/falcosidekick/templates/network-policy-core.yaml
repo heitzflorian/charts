@@ -8,8 +8,7 @@ spec:
   podSelector:
     matchLabels:
       app.kubernetes.io/component: core
-      app.kubernetes.io/instance: falco
-      app.kubernetes.io/name: falcosidekick
+      {{- include "falcosidekick.selectorLabels" . | nindent 6 }}
   policyTypes:
     - Ingress
     - Egress
