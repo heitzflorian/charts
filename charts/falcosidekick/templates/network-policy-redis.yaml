@@ -17,15 +17,10 @@ spec:
   ingress:
     # Accept Traffic on REDIS port 6379 from falcosidekick-ui
     - from:
-        - namespaceSelector:
-            matchLabels:
-              kubernetes.io/metadata.name: falco
-          podSelector:
+        - podSelector:
             matchLabels:
               app.kubernetes.io/component: ui
-              app.kubernetes.io/instance: falco
-              app.kubernetes.io/name: falcosidekick
-          podSelector:
+              {{- include "falcosidekick.selectorLabels" . | nindent 14 }}
       ports:
         - port: 6379
           protocol: TCP
