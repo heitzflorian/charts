@@ -22,7 +22,6 @@ spec:
             matchLabels:
               app.kubernetes.io/instance: falco
               app.kubernetes.io/name: falco
-          podSelector:
       ports:
         # http-notls
         - port: 2801
